@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine Recommendation</title>
+</head>
+<body>
+    <h2>Search by Condition</h2>
+    <form method="POST">
+        <label for="condition">Enter Condition:</label>
+        <input type="text" id="condition" name="condition">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <h3>Medicines for Given Condition:</h3>
+        <ul>
+        {% for item in results %}
+            <li><strong>{{ item['Medicine_Name'] }}</strong>: {{ item['Uses'] }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
+    <h2>Recommend Similar Medicines</h2>
+    <form method="POST">
+        <label for="medicine_name">Enter Medicine Name:</label>
+        <input type="text" id="medicine_name" name="medicine_name">
+        <button type="submit">Recommend</button>
+    </form>
+
+    {% if medicine_recommendations %}
+        <h3>Similar Medicines:</h3>
+        <ul>
+        {% for item in medicine_recommendations %}
+            <li><strong>{{ item['Medicine_Name'] }}</strong>: {{ item['Uses'] }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
