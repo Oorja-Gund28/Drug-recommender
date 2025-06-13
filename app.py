@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load your cleaned data
-data = pd.read_csv(r"C:\Users\user\OneDrive\Documents\Python\Healthcare\Final_selectedData-DrugRecommendation\cleaned_data.csv")  
+data = pd.read_csv(r"C:\Users\user\OneDrive\Documents\Python\Healthcare\Final_selectedData-DrugRecommendation\Healthcareapp\cleaned_data.csv")  
 
 app = Flask(__name__)
 
