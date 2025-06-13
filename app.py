@@ -3,11 +3,11 @@ import pandas as pd
 import pickle
 
 # Load your cleaned data
-data = pd.read_csv(r"C:\Users\user\OneDrive\Documents\Python\Healthcare\Final_selectedData-DrugRecommendation\Healthcareapp\cleaned_data.csv")  
+data = pd.read_csv(r"cleaned_data.csv")  
 
 app = Flask(__name__)
 
-with open(r"C:\Users\user\OneDrive\Documents\Python\Healthcare\Final_selectedData-DrugRecommendation\cosine_similarity.pkl", "rb") as f:
+with open(r"cosine_similarity.pkl", "rb") as f:
     similarity_matrix = pickle.load(f)
 
 
