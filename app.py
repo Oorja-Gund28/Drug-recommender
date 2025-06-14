@@ -7,7 +7,7 @@ data = pd.read_csv(r"cleaned_data.csv")
 
 app = Flask(__name__)
 
-with open(r"C:\Users\user\OneDrive\Documents\Python\Healthcare\Final_selectedData-DrugRecommendation\Healthcareapp\cosine_similarity.pkl", "rb") as f:
+with open(r"cosine_similarity.pkl", "rb") as f:
     similarity_matrix = pickle.load(f)
 
 
