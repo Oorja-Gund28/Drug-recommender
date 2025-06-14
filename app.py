@@ -1,15 +1,16 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import pickle
+import os
 
 # Load your cleaned data
 data = pd.read_csv(r"cleaned_data.csv")  
 
 app = Flask(__name__)
 
-with open(r"cosine_similarity.pkl", "rb") as f:
-    similarity_matrix = pickle.load(f)
-
+pkl_path = os.path.join(os.path.dirname(__file__), 'cosine_similarity.pkl')
+with open(pkl_path, "rb") as f:
+    similarity = pickle.load(f)
 
 def search_medicines(condition, top_n=5):
     condition = condition.lower()
