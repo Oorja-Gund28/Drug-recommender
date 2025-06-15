@@ -7,7 +7,7 @@ data = pd.read_csv(r"cleaned_data.csv")
 
 app = Flask(__name__)
 
-with open(""C:\Users\user\OneDrive\Documents\Python\Healthcare\Final_selectedData-DrugRecommendation\Healthcareapp\cosine_similarity_compressed.pkl"", "rb") as f:
+with open(""C:\\Users\\user\\OneDrive\\Documents\\Python\\Healthcare\\Final_selectedData-DrugRecommendation\\Healthcareapp\\cosine_similarity_compressed.pkl"", "rb") as f:
     cosine_sim = joblib.load(f)
 
 def search_medicines(condition, top_n=5):
