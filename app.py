@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import pandas as pd
-import pickle
 import joblib
 
 # Load your cleaned data
@@ -8,7 +7,8 @@ data = pd.read_csv(r"cleaned_data.csv")
 
 app = Flask(__name__)
 
-joblib.dump(similarity_matrix, 'cosine_similarity_compressed.pkl', compress=True)
+with open("cosine_similarity_compressed.pkl", "rb") as f:
+    cosine_sim = joblib.load(f)
 
 def search_medicines(condition, top_n=5):
     condition = condition.lower()
