@@ -57,7 +57,7 @@ def index():
 
     recommendations = []
     medicine_recommendations = []
-    
+
     if request.method == 'POST':
         if 'condition' in request.form and request.form['condition']:
             condition = request.form['condition']
@@ -68,12 +68,17 @@ def index():
             medicine = request.form['medicine_name']
             medicine_recommendations = recommend(medicine)
 
+    # Get unique medicine names for the dropdown
+    medicine_names = sorted(data['Medicine_Name'].dropna().unique())
+
     return render_template(
         'index.html',
         results=recommendations,
         medicine_recommendations=medicine_recommendations,
-        username=session.get('username')
+        username=session.get('username'),
+        medicine_names=medicine_names  # send to template
     )
 
 if __name__ == '__main__':
     app.run(debug=True)
+
