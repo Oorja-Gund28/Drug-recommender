@@ -1,41 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Medicine Recommendation</title>
+    <meta charset="UTF-8">
+    <title>Medicine Recommendation System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .logout {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .logout a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        hr {
+            margin: 40px 0;
+        }
+    </style>
 </head>
 <body>
-    <h2>Search by Condition</h2>
-    <form method="POST">
-        <label for="condition">Enter Condition:</label>
-        <input type="text" id="condition" name="condition">
-        <button type="submit">Search</button>
-    </form>
+    <div class="container">
 
-    {% if results %}
-        <h3>Medicines for Given Condition:</h3>
-        <ul>
-        {% for item in results %}
-            <li><strong>{{ item['Medicine_Name'] }}</strong>: {{ item['Uses'] }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+        <div class="logout">
+            <a href="/logout">Logout</a>
+        </div>
 
-    <hr>
+        <div class="card">
+            <h2>🔍 Search by Condition</h2>
+            <form method="POST">
+                <label for="condition">Enter Condition:</label>
+                <input type="text" id="condition" name="condition" placeholder="e.g., fever, headache">
+                <button type="submit">Search</button>
+            </form>
 
-    <h2>Recommend Similar Medicines</h2>
-    <form method="POST">
-        <label for="medicine_name">Enter Medicine Name:</label>
-        <input type="text" id="medicine_name" name="medicine_name">
-        <button type="submit">Recommend</button>
-    </form>
+            {% if results %}
+                <h3>Medicines for Given Condition:</h3>
+                <ul>
+                    {% for item in results %}
+                        <li><strong>{{ item['Medicine_Name'] }}</strong>: {{ item['Uses'] }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
 
-    {% if medicine_recommendations %}
-        <h3>Similar Medicines:</h3>
-        <ul>
-        {% for item in medicine_recommendations %}
-            <li><strong>{{ item['Medicine_Name'] }}</strong>: {{ item['Uses'] }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+        <div class="card">
+            <h2>💊 Recommend Similar Medicines</h2>
+            <form method="POST">
+                <label for="medicine_name">Enter Medicine Name:</label>
+                <input type="text" id="medicine_name" name="medicine_name" placeholder="e.g., Crocin, Paracetamol">
+                <button type="submit">Recommend</button>
+            </form>
+
+            {% if medicine_recommendations %}
+                <h3>Similar Medicines:</h3>
+                <ul>
+                    {% for item in medicine_recommendations %}
+                        <li><strong>{{ item['Medicine_Name'] }}</strong>: {{ item['Uses'] }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+    </div>
 </body>
 </html>
