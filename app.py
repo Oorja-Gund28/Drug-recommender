@@ -15,7 +15,7 @@ def search_medicines(condition, top_n=5):
     results = data[data['Uses_clean'].str.contains(condition, case=False, na=False)]
     return results.head(top_n)[['Medicine_Name', 'Uses']]
 
-def recommend(medicine_name, df=data, similarity_matrix=similarity_matrix, top_n=5):
+def recommend(medicine_name, df=data, similarity_matrix=cosine_sim, top_n=5):
     if medicine_name not in df['Medicine_Name'].values:
         return []
     index = df[df['Medicine_Name'] == medicine_name].index[0]
